@@ -38,7 +38,7 @@ node("ubuntu_bionic") {
             
             sts = getStsCreds(environment)
 
-            dir("files/deploy/${tfConfigFolder}") {
+            dir("files/deploy/") {
                 sts = accountGroups.getStsCreds(accountGroup, environment)
                 withEnv(["AWS_ACCESS_KEY_ID=${sts[0]}", "AWS_SECRET_ACCESS_KEY=${sts[1]}", "AWS_SESSION_TOKEN=${sts[2]}"]) {
                     sh("terraform init -backend-config=./env/${environment}/${region}.tfbackend")
